@@ -111,7 +111,7 @@ public class HystrixProducerTest extends CamelTestSupport {
 
     @Test
     public void shouldRespectMaxExecutionTime() throws InterruptedException {
-        slowResultEndpoint.expectedBodiesReceived("test");
+        slowResultEndpoint.expectedBodiesReceived("test", "test");
         final Object tooSlow = slowRouteTemplate.requestBody("test");
         assertEquals("error", tooSlow);
         ConfigurationManager.getConfigInstance().setProperty(SLOW_COMMAND_TIMEOUT, 3000);
